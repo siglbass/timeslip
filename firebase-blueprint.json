@@ -1,0 +1,202 @@
+{
+  "entities": {
+    "user": {
+      "title": "User Profile",
+      "description": "User accounts with system privileges and levels.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "artistId": { "type": "string" },
+        "joinedAt": { "type": "string" },
+        "hasNodeAccess": { "type": "boolean" }
+      },
+      "required": ["id", "username", "email", "role"]
+    },
+    "artist": {
+      "title": "Artist Object",
+      "description": "Information about direct label signees.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "bio": { "type": "string" },
+        "genre": { "type": "string" },
+        "image": { "type": "string" },
+        "releasesCount": { "type": "number" },
+        "contactEmail": { "type": "string" }
+      },
+      "required": ["id", "name", "bio", "genre"]
+    },
+    "release": {
+      "title": "Audio Release",
+      "description": "Albums, singles, EPs, and compositions in the discography.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "artistId": { "type": "string" },
+        "artistName": { "type": "string" },
+        "title": { "type": "string" },
+        "releaseDate": { "type": "string" },
+        "genre": { "type": "string" },
+        "image": { "type": "string" },
+        "audioUrl": { "type": "string" },
+        "duration": { "type": "string" },
+        "description": { "type": "string" },
+        "catalogNumber": { "type": "string" },
+        "isLabelRelease": { "type": "boolean" }
+      },
+      "required": ["id", "artistId", "title", "releaseDate", "genre", "image", "audioUrl"]
+    },
+    "merchItem": {
+      "title": "Merchandise Item",
+      "description": "Vinyl plates, apparel, and label accessories in the e-commerce storage.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "image": { "type": "string" },
+        "sizes": { "type": "array" },
+        "category": { "type": "string" },
+        "stock": { "type": "number" }
+      },
+      "required": ["id", "name", "price", "image", "category", "stock"]
+    },
+    "blogEntry": {
+      "title": "News Blog Entry",
+      "description": "Label and scene press updates.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "date": { "type": "string" },
+        "image": { "type": "string" },
+        "tags": { "type": "array" },
+        "summary": { "type": "string" }
+      },
+      "required": ["id", "title", "content", "author", "date"]
+    },
+    "bookingInquiry": {
+      "title": "Booking Request",
+      "description": "Artists tour or performance gig coordination.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "artistId": { "type": "string" },
+        "artistName": { "type": "string" },
+        "requesterName": { "type": "string" },
+        "requesterEmail": { "type": "string" },
+        "dateOfEvent": { "type": "string" },
+        "location": { "type": "string" },
+        "budget": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "artistId", "requesterName", "requesterEmail", "dateOfEvent", "location", "status"]
+    },
+    "rotatingCell": {
+      "title": "Rotating Cell Promo Card",
+      "description": "Dynamic frontpage cell element that can be updated in administrative modules.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "actionText": { "type": "string" },
+        "actionTarget": { "type": "string" },
+        "order": { "type": "number" },
+        "isActive": { "type": "boolean" },
+        "themeAccent": { "type": "string" }
+      },
+      "required": ["id", "title", "actionTarget", "order", "isActive"]
+    },
+    "streamMessage": {
+      "title": "Stream Live Chat Message",
+      "description": "Instant dialogue message logs on DJ continuous transmission channels.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "role": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "sessionId": { "type": "string" }
+      },
+      "required": ["id", "username", "role", "text", "timestamp", "sessionId"]
+    },
+    "liveSession": {
+      "title": "Live DJ Stream Session",
+      "description": "Records representing high fidelity live streaming broadcast sessions.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "djName": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "trackId": { "type": "string" },
+        "startedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "djName", "isActive", "startedAt"]
+    },
+    "navigationSetting": {
+      "title": "Navigation Settings",
+      "description": "Store configuration of top navigation bar menu items.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "items": { "type": "array" }
+      },
+      "required": ["id", "items"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "Stores user levels and identifiers."
+    },
+    "/artists/{artistId}": {
+      "schema": "artist",
+      "description": "Stores record label artist profiles."
+    },
+    "/releases/{releaseId}": {
+      "schema": "release",
+      "description": "Label or individual artist electronic music uploads."
+    },
+    "/merch/{itemId}": {
+      "schema": "merchItem",
+      "description": "E-commerce storage options."
+    },
+    "/blog/{entryId}": {
+      "schema": "blogEntry",
+      "description": "Label logs and news feeds."
+    },
+    "/bookings/{bookingId}": {
+      "schema": "bookingInquiry",
+      "description": "Direct submissions regarding artist bookings."
+    },
+    "/cells/{cellId}": {
+      "schema": "rotatingCell",
+      "description": "Dynamic landing grids."
+    },
+    "/stream/{messageId}": {
+      "schema": "streamMessage",
+      "description": "Continuous live DJ stream chat room entries."
+    },
+    "/navigation/{configId}": {
+      "schema": "navigationSetting",
+      "description": "Stores site-wide navigation structure parameters."
+    },
+    "/liveSessions/{sessionId}": {
+      "schema": "liveSession",
+      "description": "Tracks currently broadcast session metadata and configurations."
+    }
+  }
+}

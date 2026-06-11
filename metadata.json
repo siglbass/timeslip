@@ -1,0 +1,9 @@
+{
+  "name": "TIMESLIP",
+  "description": "Electric Matrix-green administrative record label platform featuring rotating promo cells, live DJ streaming with active chat, artists bio index, full master discography, interactive Web3 node console, and high-fidelity custom merchandise e-commerce.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
